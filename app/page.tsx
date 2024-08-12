@@ -11,10 +11,10 @@ export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: user, error,
+  } = await supabase.auth.getUser();
 
-  if (!session) {
+  if (error || !user) {
     redirect("/login");
   }
 
@@ -27,7 +27,7 @@ export default async function Home() {
       ...tweet,
       author: Array.isArray(tweet.author) ? tweet.author[0] : tweet.author,
       user_has_liked_tweet: !!tweet.likes.find(
-        (like) => like.user_id === session.user.id
+        (like) => like.user_id === user.id
       ),
       likes: tweet.likes.length,
     })) ?? [];
@@ -39,11 +39,11 @@ export default async function Home() {
   );
 
   return (
-    <>
+    <div className={styles.centeredContainer}>
       <AuthButtonServer />
       <NewTweet />
       <Tweets
         tweets={tweets} />
-    </>
+    </div>
   );
 }

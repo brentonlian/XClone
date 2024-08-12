@@ -18,7 +18,9 @@ export default function NewTweet() {
   return (
     <form action={addTweet}>
       <input name="title" className={styles["input-highlight"]} />
-      <button type="submit">tweet</button>
+      <button type="submit" className={styles.tweetButton}>
+        tweet
+      </button>
     </form>
   );
 }

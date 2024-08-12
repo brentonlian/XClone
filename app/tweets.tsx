@@ -4,6 +4,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Likes from "./likes";
 import { useEffect, useOptimistic } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./styles.module.css";
 
 export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<
@@ -46,7 +47,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
   }, [supabase, router]);
 
   return reversedOptimisticTweets.map((tweet) => (
-    <div key={tweet.id}>
+    <div key={tweet.id} className={styles["tweet-box"]}>
       <p>
         {tweet.author.name} {tweet.author.username}
       </p>
