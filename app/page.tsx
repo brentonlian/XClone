@@ -41,7 +41,9 @@ export default async function Home() {
   return (
     <div className={styles.centeredContainer}>
       <AuthButtonServer />
-      <NewTweet />
+      <div className={styles.newTweetContainer}>
+        <NewTweet />
+      </div>
       <Tweets
         tweets={tweets} />
     </div>

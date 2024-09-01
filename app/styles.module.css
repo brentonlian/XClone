@@ -78,4 +78,11 @@
   margin-top: 10px;
 }
 
+.newTweetContainer {
+  margin-bottom: 20px; /* Moves the button up by increasing the bottom margin */
+  /* Or use padding if you want to create space within the container */
+}
+
+
+
 
