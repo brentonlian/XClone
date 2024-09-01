@@ -1,0 +1,26 @@
+/* app/profile/[id]/profile.module.css */
+
+.profileContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .profileContainer h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .profileContainer p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    margin-top: 50px;
+  }
+  

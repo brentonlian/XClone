@@ -32,11 +32,12 @@ export default async function Home() {
       likes: tweet.likes.length,
     })) ?? [];
 
-  const ProfileButton = ({ authorId }: { authorId: string }) => (
-    <Link href={`/profile/${authorId}`}>
-      <a className={styles.profileButton}>View Profile</a>
-    </Link>
-  );
+    const ProfileButton = ({ authorId }: { authorId: string }) => (
+      <Link href={`/profile/${authorId}`}>
+        <a className={styles.profileButton}>View Profile</a>
+      </Link>
+    );
+    
 
   return (
     <div className={styles.centeredContainer}>
