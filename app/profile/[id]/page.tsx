@@ -2,6 +2,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import styles from "./profile.module.css";
 
 export default async function Profile({ params }: { params: { id: string } }) {
@@ -29,7 +30,13 @@ export default async function Profile({ params }: { params: { id: string } }) {
       <p>Email: {profileData.email}</p>
       <p>Bio: {profileData.bio || "No bio available"}</p>
       <p>Joined on: {new Date(profileData.created_at).toLocaleDateString()}</p>
-      {/* Add more profile details as needed */}
+
+      {/* If the current profile is not the user's own profile, show a link to their own profile */}
+      {profileData.id !== user.id && (
+        <Link href={`/profile/${user.id}`} className={styles.myProfileLink}>
+          My Profile
+        </Link>
+      )}
     </div>
   );
 }

@@ -23,4 +23,22 @@
     text-align: center;
     margin-top: 50px;
   }
+
+  /* app/profile/[id]/profile.module.css */
+
+.myProfileLink {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.myProfileLink:hover {
+  background-color: #005bb5;
+}
+
   

@@ -1,18 +1,17 @@
+// app/page.tsx
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
 import NewTweet from "./new-tweet";
 import Tweets from "./tweets";
-import Link from "next/link"; // Import Link component from Next.js
+import Link from "next/link";
 import styles from "./styles.module.css";
 
 export default async function Home() {
-  const supabase = createServerComponentClient<Database>({ cookies });
+  const supabase = createServerComponentClient({ cookies });
 
-  const {
-    data: user, error,
-  } = await supabase.auth.getUser();
+  const { data: user, error } = await supabase.auth.getUser();
 
   if (error || !user) {
     redirect("/login");
@@ -32,21 +31,14 @@ export default async function Home() {
       likes: tweet.likes.length,
     })) ?? [];
 
-    const ProfileButton = ({ authorId }: { authorId: string }) => (
-      <Link href={`/profile/${authorId}`}>
-        <a className={styles.profileButton}>View Profile</a>
-      </Link>
-    );
-    
-
   return (
     <div className={styles.centeredContainer}>
       <AuthButtonServer />
-      <div className={styles.newTweetContainer}>
-        <NewTweet />
-      </div>
-      <Tweets
-        tweets={tweets} />
+      <Link href={`/profile/${user.id}`} className={styles.profileLink}>
+        My Profile
+      </Link>
+      <NewTweet />
+      <Tweets tweets={tweets} />
     </div>
   );
 }

@@ -83,6 +83,24 @@
   /* Or use padding if you want to create space within the container */
 }
 
+/* app/styles.module.css */
+
+.profileLink {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 16px;
+  background-color: #0070f3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.profileLink:hover {
+  background-color: #005bb5;
+}
+
+
 
 
 
