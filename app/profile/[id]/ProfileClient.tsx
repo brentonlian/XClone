@@ -1,5 +1,3 @@
-// app/profile/[id]/ProfileClient.tsx
-// Client side logic. Server side logic is in page.tsx
 "use client";
 
 import { useState } from "react";
@@ -15,31 +13,39 @@ export default function ProfileClient({
   userId: string;
 }) {
   const [bio, setBio] = useState(profileData.bio || "");
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [updateMessage, setUpdateMessage] = useState("");
   const supabase = createClientComponentClient();
 
   // Handle bio update
   const handleBioChange = async () => {
+    if (!profileData?.id) {
+      console.error("Profile ID is undefined. Cannot update bio.");
+      return;
+    }
+
+    setIsUpdating(true);
+    setUpdateMessage(""); // Clear any previous messages
+
     const { data, error } = await supabase
       .from("profiles")
       .update({ bio })
       .eq("id", profileData.id)
       .select();
-  
-    console.log("Full response:", { data, error });
-  
+
     if (error) {
+      setUpdateMessage("Error updating bio. Please try again.");
       console.error("Error updating bio:", error.message);
     } else if (data && data.length > 0) {
       setBio(data[0].bio);
-      console.log("Bio updated successfully");
+      setUpdateMessage("Bio updated successfully.");
     } else {
-      console.error("No data returned from the update");
+      setUpdateMessage("No data returned from the update.");
     }
+
+    setIsUpdating(false);
   };
-  
-  
-  
-  
+
   return (
     <div className={styles.profileContainer}>
       <h1>{profileData.username}'s Profile</h1>
@@ -50,8 +56,8 @@ export default function ProfileClient({
         onChange={(e) => setBio(e.target.value)}
         className={styles.bioInput}
       />
-      <button onClick={handleBioChange} className={styles.updateButton}>
-        Update Bio
+      <button onClick={handleBioChange} className={styles.updateButton} disabled={isUpdating}>
+        {isUpdating ? "Updating..." : "Update Bio"}
       </button>
 
       {/* If the current profile is not the user's own profile, show a link to the homepage */}
@@ -60,6 +66,7 @@ export default function ProfileClient({
           Home
         </Link>
       )}
+      {updateMessage && <p>{updateMessage}</p>}
     </div>
   );
 }
