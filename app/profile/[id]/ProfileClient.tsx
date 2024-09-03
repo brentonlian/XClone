@@ -19,18 +19,26 @@ export default function ProfileClient({
 
   // Handle bio update
   const handleBioChange = async () => {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from("profiles")
       .update({ bio })
-      .eq("id", profileData.id);
+      .eq("id", profileData.id)
+      .select();
+  
+    console.log("Full response:", { data, error });
   
     if (error) {
       console.error("Error updating bio:", error.message);
-    } else {
+    } else if (data && data.length > 0) {
+      setBio(data[0].bio);
       console.log("Bio updated successfully");
-      window.location.reload();  // Force a reload to fetch updated data
+    } else {
+      console.error("No data returned from the update");
     }
   };
+  
+  
+  
   
   return (
     <div className={styles.profileContainer}>
