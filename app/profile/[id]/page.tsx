@@ -1,19 +1,22 @@
 // app/profile/[id]/page.tsx
+// Contains server side logic
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import Link from "next/link";
+import ProfileClient from "./ProfileClient";
 import styles from "./profile.module.css";
 
 export default async function Profile({ params }: { params: { id: string } }) {
   const supabase = createServerComponentClient({ cookies });
 
+  // Fetch the user
   const { data: user, error } = await supabase.auth.getUser();
 
   if (error || !user) {
     redirect("/login");
   }
 
+  // Fetch the profile data
   const { data: profileData, error: profileError } = await supabase
     .from("profiles")
     .select("*")
@@ -24,19 +27,6 @@ export default async function Profile({ params }: { params: { id: string } }) {
     return <div className={styles.error}>Profile not found</div>;
   }
 
-  return (
-    <div className={styles.profileContainer}>
-      <h1>{profileData.username}'s Profile</h1>
-      <p>Email: {profileData.email}</p>
-      <p>Bio: {profileData.bio || "No bio available"}</p>
-      <p>Joined on: {new Date(profileData.created_at).toLocaleDateString()}</p>
-
-      {/* If the current profile is not the user's own profile, show a link to their own profile */}
-      {profileData.id !== user.id && (
-        <Link href={`/profile/${user.id}`} className={styles.myProfileLink}>
-          My Profile
-        </Link>
-      )}
-    </div>
-  );
+  // Pass the profile data and user ID to the Client Component
+  return <ProfileClient profileData={profileData} userId={user.id} />;
 }

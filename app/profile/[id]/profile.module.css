@@ -41,4 +41,25 @@
   background-color: #005bb5;
 }
 
+.profileContainer {
+  /* Existing styles */
+}
+
+.bioInput {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.saveButton, .cancelButton, .editButton {
+  margin-right: 10px;
+  padding: 5px 10px;
+}
+
+.myProfileLink {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+
   
