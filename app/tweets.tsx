@@ -48,9 +48,17 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
 
   return reversedOptimisticTweets.map((tweet) => (
     <div key={tweet.id} className={styles["tweet-box"]}>
-      <p>
-        {tweet.author.name} {tweet.author.username}
-      </p>
+      {/* Display profile picture */}
+      <div className={styles["tweet-header"]}>
+        <img
+          src={tweet.author.avatar_url} // Avatar URL from GitHub
+          alt={`${tweet.author.name}'s avatar`}
+          className={styles["avatar"]}
+        />
+        <p>
+          {tweet.author.name} ({tweet.author.username})
+        </p>
+      </div>
       <p>{tweet.title}</p>
       <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
     </div>
