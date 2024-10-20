@@ -4,6 +4,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Likes from "./likes";
 import { useEffect, useOptimistic } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import styles from "./styles.module.css";
 
 export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
@@ -19,9 +20,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
     return newOptimisticTweets;
   });
 
-  // Reverse the order of tweets so that new tweets appear at the top
   const reversedOptimisticTweets = [...optimisticTweets].reverse();
-
   const supabase = createClientComponentClient();
   const router = useRouter();
 
@@ -30,12 +29,8 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
       .channel("realtime tweets")
       .on(
         "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "tweets",
-        },
-        (payload) => {
+        { event: "*", schema: "public", table: "tweets" },
+        () => {
           router.refresh();
         }
       )
@@ -48,13 +43,15 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
 
   return reversedOptimisticTweets.map((tweet) => (
     <div key={tweet.id} className={styles["tweet-box"]}>
-      {/* Display profile picture */}
+      {/* Profile Picture with Link to Profile Page */}
       <div className={styles["tweet-header"]}>
-        <img
-          src={tweet.author.avatar_url} // Avatar URL from GitHub
-          alt={`${tweet.author.name}'s avatar`}
-          className={styles["avatar"]}
-        />
+        <Link href={`/profile/${tweet.author.id}`}>
+          <img
+            src={tweet.author.profile_pic_url || "/default-avatar.png"}
+            alt={`${tweet.author.name}'s avatar`}
+            className={styles["avatar"]}
+          />
+        </Link>
         <p>
           {tweet.author.name} ({tweet.author.username})
         </p>

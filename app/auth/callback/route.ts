@@ -1,16 +1,27 @@
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+"use server";
+
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-import { NextResponse, type NextRequest } from "next/server";
+const supabase = createServerActionClient({ cookies });
 
-export async function GET(request: NextRequest) {
-  const requestUrl = new URL(request.url);
-  const code = requestUrl.searchParams.get("code");
+export async function handleLogin() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (code) {
-    const supabase = createRouteHandlerClient<Database>({ cookies });
-    await supabase.auth.exchangeCodeForSession(code);
+  if (user) {
+    const { id, user_metadata } = user;
+    const { name, avatar_url, email } = user_metadata;
+
+    console.log("GitHub Avatar URL:", avatar_url); // Debugging step
+
+    // Use 'profile_pic_url' instead of 'avatar_url'
+    await supabase.from("profiles").upsert({
+      id,
+      name: name || "Anonymous",
+      profile_pic_url: avatar_url, // Correct column name
+      username: email || "no-email",
+    });
   }
-
-  return NextResponse.redirect(requestUrl.origin);
 }
