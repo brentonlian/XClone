@@ -2,6 +2,7 @@
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Likes from "./likes";
+import Comments from "./comments"; // Import Comments component
 import { useEffect, useOptimistic } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -57,7 +58,12 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
         </p>
       </div>
       <p>{tweet.title}</p>
+      
+      {/* Likes component */}
       <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
+      
+      {/* Comments section */}
+      <Comments tweetId={tweet.id} /> {/* Render Comments for each tweet */}
     </div>
   ));
 }
