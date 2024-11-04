@@ -1,27 +1,42 @@
 "use server";
 
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
-const supabase = createServerActionClient({ cookies });
+export async function POST() {
+  const supabase = createRouteHandlerClient({ cookies });
 
-export async function handleLogin() {
   const {
     data: { user },
+    error,
   } = await supabase.auth.getUser();
 
+  if (error) {
+    console.error("Error retrieving user:", error.message);
+    return NextResponse.json({ error: "Failed to retrieve user" }, { status: 500 });
+  }
+
   if (user) {
-    const { id, user_metadata } = user;
+    const { id, user_metadata = {} } = user;
     const { name, avatar_url, email } = user_metadata;
 
-    console.log("GitHub Avatar URL:", avatar_url); // Debugging step
+    console.log("GitHub Avatar URL:", avatar_url);
 
-    // Use 'profile_pic_url' instead of 'avatar_url'
-    await supabase.from("profiles").upsert({
+    const { error: upsertError } = await supabase.from("profiles").upsert({
       id,
       name: name || "Anonymous",
-      profile_pic_url: avatar_url, // Correct column name
+      profile_pic_url: avatar_url || "", // Default empty string if null
       username: email || "no-email",
     });
+
+    if (upsertError) {
+      console.error("Error updating profile:", upsertError.message);
+      return NextResponse.json({ error: "Failed to update profile" }, { status: 500 });
+    }
+
+    return NextResponse.json({ message: "Profile updated successfully" });
   }
+
+  return NextResponse.json({ error: "No user found" }, { status: 404 });
 }
