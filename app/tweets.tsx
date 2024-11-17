@@ -48,7 +48,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
       <div className={styles["tweet-header"]}>
         <Link href={`/profile/${tweet.author.id}`}>
           <img
-            src={tweet.author.profile_pic_url || "/default-avatar.png"}
+            src={tweet.author.profile_pic_url || "/default-avatar.png"} // Fallback image
             alt={`${tweet.author.name}'s avatar`}
             className={styles["avatar"]}
           />
