@@ -1,23 +1,42 @@
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+"use client";
+
+import { useState } from "react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import styles from "./styles.module.css";
 
 export default function NewTweet() {
-  const addTweet = async (formData: FormData) => {
-    "use server";
-    const title = String(formData.get("title"));
-    const supabase = createServerActionClient<Database>({ cookies });
+  const [newTweet, setNewTweet] = useState("");
+  const supabase = createClientComponentClient();
+
+  const handleAddTweet = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (newTweet.trim() === "") {
+      console.error("Tweet cannot be empty");
+      return;
+    }
+
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    if (user) {
-      await supabase.from("tweets").insert({ title, user_id: user.id });
+    if (!user) {
+      console.error("User not authenticated");
+      return;
     }
+
+    await supabase.from("tweets").insert({ title: newTweet, user_id: user.id });
+    setNewTweet(""); // Clear the input field after submission
   };
 
   return (
-    <form action={addTweet}>
-      <input name="title" className={styles["input-highlight"]} />
+    <form onSubmit={handleAddTweet}>
+      <input
+        type="text"
+        value={newTweet}
+        onChange={(e) => setNewTweet(e.target.value)}
+        placeholder="What's happening?"
+        className={styles["input-highlight"]}
+      />
       <button type="submit" className={styles.tweetButton}>
         tweet
       </button>

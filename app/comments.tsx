@@ -93,7 +93,7 @@ export default function Comments({ tweetId }: { tweetId: number }) {
           className={styles.commentInput}
         />
         <button type="submit" className={styles.commentButton}>
-          Post
+          Comment
         </button>
       </form>
     </div>
