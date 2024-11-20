@@ -150,6 +150,17 @@
   background-color: #0d8ddb;
 }
 
+.tweet-image-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.tweet-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 
 
 

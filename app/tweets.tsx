@@ -57,12 +57,25 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
           {tweet.author.name} ({tweet.author.username})
         </p>
       </div>
-      <p>{tweet.title}</p>
       
-      {/* Likes component */}
+      {/* Tweet Content */}
+      <p>{tweet.title}</p>
+
+      {/* Render Image if image_url is present */}
+      {tweet.image_url && (
+        <div className={styles["tweet-image-container"]}>
+          <img
+            src={tweet.image_url}
+            alt="Tweet image"
+            className={styles["tweet-image"]}
+          />
+        </div>
+      )}
+      
+      {/* Likes Component */}
       <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
       
-      {/* Comments section */}
+      {/* Comments Section */}
       <Comments tweetId={tweet.id} /> {/* Render Comments for each tweet */}
     </div>
   ));
