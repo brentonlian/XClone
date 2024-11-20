@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { v4 as uuidv4 } from "uuid"; // Import uuid for unique file naming
 import styles from "./styles.module.css";
 
 export default function NewTweet() {
@@ -29,10 +30,10 @@ export default function NewTweet() {
 
       // Upload image to Supabase if provided
       if (image) {
-        const fileName = `${user.id}-${Date.now()}-${image.name}`;
+        const uniqueFileName = `${user.id}-${Date.now()}-${uuidv4()}-${image.name}`;
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from("tweet-images")
-          .upload(fileName, image);
+          .upload(uniqueFileName, image);
 
         if (uploadError) {
           console.error("Error uploading image:", uploadError);
@@ -45,10 +46,15 @@ export default function NewTweet() {
           .from("tweet-images")
           .getPublicUrl(uploadData.path);
 
+        if (!publicUrlData?.publicUrl) {
+          console.error("Error generating public URL");
+          setIsLoading(false);
+          return;
+        }
+
         imageUrl = publicUrlData.publicUrl;
 
-        //console log
-        console.log("Image URL:", imageUrl);
+        console.log("Image URL:", imageUrl); // Log the image URL for debugging
       }
 
       // Insert tweet into the `tweets` table
