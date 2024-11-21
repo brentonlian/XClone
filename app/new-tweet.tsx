@@ -28,12 +28,18 @@ export default function NewTweet() {
 
       let imageUrl = null;
 
+      // Debugging logs
+      console.log("Start adding tweet");
+      console.log("User authenticated:", user);
+      console.log("Image selected:", image);
+
       // Upload image to Supabase if provided
       if (image) {
         const uniqueFileName = `${user.id}-${Date.now()}-${uuidv4()}-${image.name}`;
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from("tweet-images")
           .upload(uniqueFileName, image);
+        console.log("Uploading image with unique name:", uniqueFileName);
 
         if (uploadError) {
           console.error("Error uploading image:", uploadError);
@@ -73,6 +79,13 @@ export default function NewTweet() {
       // Clear input fields after successful submission
       setNewTweet("");
       setImage(null);
+
+      // Clear the file input
+      const fileInput = document.querySelector("input[type='file']");
+      if (fileInput) {
+        (fileInput as HTMLInputElement).value = ""; // Reset the file input
+        console.log("File input cleared after upload");
+      }
     } catch (error) {
       console.error("Unexpected error adding tweet:", error);
     } finally {
