@@ -76,16 +76,9 @@ export default function NewTweet() {
         return;
       }
 
-      // Clear input fields after successful submission
-      setNewTweet("");
-      setImage(null);
+      // Reload the page after successful tweet submission
+      window.location.reload();
 
-      // Clear the file input
-      const fileInput = document.querySelector("input[type='file']");
-      if (fileInput) {
-        (fileInput as HTMLInputElement).value = ""; // Reset the file input
-        console.log("File input cleared after upload");
-      }
     } catch (error) {
       console.error("Unexpected error adding tweet:", error);
     } finally {

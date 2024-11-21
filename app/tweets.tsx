@@ -48,21 +48,31 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
     if (!window.confirm("Are you sure you want to delete this tweet?")) return;
   
     try {
-      const { error } = await supabase.from("tweets").delete().eq("id", tweetId);
+      // First, delete all comments referencing this tweet
+      const { error: commentError } = await supabase.from("comments").delete().eq("tweet_id", tweetId);
+      if (commentError) {
+        console.error("Error deleting associated comments:", commentError);
+        alert("Failed to delete the associated comments. Please try again.");
+        return;
+      }
   
-      if (error) {
-        console.error("Error deleting tweet:", error.message);
+      // Then, delete the tweet itself
+      const { error: tweetError } = await supabase.from("tweets").delete().eq("id", tweetId);
+      if (tweetError) {
+        console.error("Error deleting tweet:", tweetError);
         alert("Failed to delete the tweet. Please try again.");
         return;
       }
   
-      // Remove the deleted tweet from the optimistic UI state
+      // Update the UI after successful deletion
       setOptimisticTweets((prev) => prev.filter((tweet) => tweet.id !== tweetId));
     } catch (err) {
-      console.error("Unexpected error deleting tweet:", err);
+      console.error("Unexpected error during deletion:", err);
       alert("Unexpected error occurred. Please try again.");
     }
   }
+  
+  
   
 
   return reversedOptimisticTweets.map((tweet) => (
