@@ -161,6 +161,27 @@
   border-radius: 8px;
 }
 
+/* styles.module.css */
+.deleteButton {
+  background-color: #f44336; /* Red background */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+.deleteButton:disabled {
+  background-color: #e0e0e0; /* Light gray when disabled */
+  cursor: not-allowed;
+}
+
 
 
 
