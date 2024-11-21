@@ -46,20 +46,37 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
 
   async function handleDelete(tweetId: string) {
     if (!window.confirm("Are you sure you want to delete this tweet?")) return;
-
-    const { error } = await supabase.from("tweets").delete().eq("id", tweetId);
-
-    if (error) {
-      console.error("Error deleting tweet:", error.message);
-      return;
+  
+    try {
+      const { error } = await supabase.from("tweets").delete().eq("id", tweetId);
+  
+      if (error) {
+        console.error("Error deleting tweet:", error.message);
+        alert("Failed to delete the tweet. Please try again.");
+        return;
+      }
+  
+      // Remove the deleted tweet from the optimistic UI state
+      setOptimisticTweets((prev) => prev.filter((tweet) => tweet.id !== tweetId));
+    } catch (err) {
+      console.error("Unexpected error deleting tweet:", err);
+      alert("Unexpected error occurred. Please try again.");
     }
-
-    // Remove deleted tweet from optimisticTweets
-    setOptimisticTweets((prev) => prev.filter((tweet) => tweet.id !== tweetId));
   }
+  
 
   return reversedOptimisticTweets.map((tweet) => (
     <div key={tweet.id} className={styles["tweet-box"]}>
+      {/* Delete Button */}
+      {userId === tweet.author.id && (
+        <button
+          onClick={() => handleDelete(tweet.id)}
+          className={styles["delete-button"]}
+        >
+          ✖
+        </button>
+      )}
+
       {/* Profile Picture with Link to Profile Page */}
       <div className={styles["tweet-header"]}>
         <Link href={`/profile/${tweet.author.id}`}>
@@ -93,16 +110,6 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
 
       {/* Comments Section */}
       <Comments tweetId={tweet.id} />
-
-      {/* Delete Button */}
-      {userId === tweet.author.id && (
-        <button
-          onClick={() => handleDelete(tweet.id)}
-          className={`${styles["delete-button"]} bg-red-500 text-white px-4 py-2 rounded`}
-        >
-          Delete
-        </button>
-      )}
     </div>
   ));
 }

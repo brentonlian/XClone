@@ -161,36 +161,50 @@
   border-radius: 8px;
 }
 
-/* styles.module.css */
-.deleteButton {
+.tweet-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  position: relative; /* Enable absolute positioning for child elements */
+}
+
+.delete-button {
+  position: absolute; /* Position relative to the tweet box */
+  top: 10px; /* Distance from the top */
+  right: 10px; /* Distance from the right */
   background-color: #f44336; /* Red background */
   color: white;
   border: none;
   padding: 5px 10px;
-  cursor: pointer;
-  margin-left: 10px;
   font-size: 14px;
-  border-radius: 4px;
-}
-
-.deleteButton:hover {
-  background-color: #d32f2f; /* Darker red on hover */
-}
-
-.deleteButton:disabled {
-  background-color: #e0e0e0; /* Light gray when disabled */
-  cursor: not-allowed;
-}
-
-.delete-button {
-  margin-top: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .delete-button:hover {
-  background-color: #e63946;
+  background-color: #d32f2f; /* Darker red on hover */
 }
+
+.delete-button:disabled {
+  background-color: #e0e0e0; /* Gray when disabled */
+  cursor: not-allowed;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
 
 
 
