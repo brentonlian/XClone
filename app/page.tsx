@@ -12,7 +12,8 @@ export default async function Home() {
   const supabase = createServerComponentClient({ cookies });
 
   const { data: { user }, error } = await supabase.auth.getUser();
-  console.log(user);
+  //don't log user info
+  //console.log(user);
 
   if (error || !user) {
     redirect("/login");

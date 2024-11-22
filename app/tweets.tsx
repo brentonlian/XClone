@@ -81,9 +81,9 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
       {userId === tweet.author.id && (
         <button
           onClick={() => handleDelete(tweet.id)}
-          className={styles["delete-button"]}
+          className={styles["post-delete-button"]}
         >
-          ✖
+          Delete
         </button>
       )}
 
