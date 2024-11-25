@@ -127,15 +127,18 @@ export default function Comments({ tweetId }: { tweetId: number }) {
     <div className={styles.commentsContainer}>
       {comments.map((comment) => (
         <div key={comment.id} className={styles.comment}>
+        <span>
           <strong>{comment.author?.username}:</strong> {comment.content}
-          <button
-            onClick={() => handleDeleteComment(comment.id)}
-            disabled={isDeleting}
-            className={styles.deleteButton}
-          >
-            {isDeleting ? "Deleting..." : "Delete"}
-          </button>
-        </div>
+        </span>
+        <button
+          onClick={() => handleDeleteComment(comment.id)}
+          disabled={isDeleting}
+          className={styles.deleteButton}
+        >
+          {isDeleting ? "Deleting..." : "Delete"}
+        </button>
+      </div>
+      
       ))}
       <form onSubmit={handleAddComment}>
         <input

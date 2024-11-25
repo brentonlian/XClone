@@ -123,11 +123,6 @@
   border-top: 1px solid #e0e0e0;
 }
 
-.comment {
-  margin-bottom: 8px;
-  padding: 5px;
-}
-
 .commentInput {
   width: 100%;
   padding: 8px;
@@ -170,26 +165,41 @@
   position: relative; /* Enable absolute positioning for child elements */
 }
 
-.deleteButton {
-  padding: 5px 10px; /* Add some padding */
-  font-size: 14px;   /* Ensure the font size is readable */
-  background-color: #f44336; /* Red background for delete */
-  color: white;     /* White text */
-  border: none;     /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer;  /* Pointer cursor */
-  display: inline-block; /* Ensure proper text display */
+.comment {
+  margin-bottom: 8px;
+  padding: 5px;
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center align items vertically */
+  justify-content: center; /* Center align items horizontally */
 }
 
+.commentText {
+  margin-right: 10px; /* Space between comment and delete button */
+  text-align: center; /* Center align text within its space */
+}
 
-.delete-button:hover {
+.deleteButton {
+  padding: 4px 8px; /* Slightly smaller padding */
+  margin-left: 7px; /*Left margin for spacing */
+  font-size: 12px;   /* Reduce font size */
+  background-color: #f44336; /* Red background */
+  color: white;      /* White text */
+  border: none;      /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;   /* Pointer cursor */
+}
+
+.deleteButton:hover {
   background-color: #d32f2f; /* Darker red on hover */
 }
 
-.delete-button:disabled {
+.deleteButton:disabled {
   background-color: #e0e0e0; /* Gray when disabled */
   cursor: not-allowed;
 }
+
+
+
 
 .tweet-header {
   display: flex;
@@ -217,22 +227,25 @@
 }
 
 .post-delete-button {
-  background-color: #e63946; /* Distinct red for post deletion */
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  transition: background-color 0.3s ease;
+  position: absolute; /* Position relative to the tweet-box */
+  top: 10px; /* Adjust vertical position */
+  right: 10px; /* Adjust horizontal position */
+  padding: 5px 10px; /* Add some padding */
+  font-size: 14px; /* Adjust font size */
+  background-color: #f44336; /* Red background */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
 }
 
 .post-delete-button:hover {
-  background-color: #d62828; /* Darker red for hover effect */
+  background-color: #d32f2f; /* Darker red on hover */
 }
 
-.post-delete-button:focus {
-  outline: 2px solid #ffb4a2; /* Optional focus style */
+.post-delete-button:disabled {
+  background-color: #e0e0e0; /* Gray when disabled */
+  cursor: not-allowed;
 }
 
 
