@@ -248,6 +248,22 @@
   cursor: not-allowed;
 }
 
+/* styles.module.css */
+.logoutButton {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #d9363e;
+}
+
 
 
 

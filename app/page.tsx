@@ -1,19 +1,17 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
+import AuthButtonServer from "./auth-button-server";
 import NewTweet from "./new-tweet";
 import Tweets from "./tweets";
 import Link from "next/link";
 import styles from "./styles.module.css";
-import { User } from '@supabase/supabase-js';
+import LogoutButton from "./LogoutButton";
 
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies });
 
   const { data: { user }, error } = await supabase.auth.getUser();
-  //don't log user info
-  //console.log(user);
 
   if (error || !user) {
     redirect("/login");
@@ -39,9 +37,10 @@ export default async function Home() {
       <Link href={`/profile/${user?.id}`} className={styles.profileLink}>
         My Profile
       </Link>
+      <LogoutButton /> {/* Add the LogoutButton here */}
       <NewTweet />
       <div className={styles.spacedContainer}>
-      <Tweets tweets={tweets} />
+        <Tweets tweets={tweets} />
       </div>
     </div>
   );
