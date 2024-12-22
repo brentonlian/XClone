@@ -5,17 +5,17 @@ type Profile = DB["public"]["Tables"]["profiles"]["Row"];
 
 declare global {
   type Database = DB;
+
   type TweetWithAuthor = Tweet & {
     author: Profile;
     likes: number;
     user_has_liked_tweet: boolean;
-    avatar_url: string; // Assuming avatar_url is part of the Profile
-    image_url: string | null; // Add image_url field for the tweet's image
+    avatar_url: string;
   };
-  
+
   type Profiles = Profile & {
-    name: string;
-    username: string;
-    bio: string;
+    name: string; // Full name of the user
+    username: string; // Username of the user
+    bio: string; // Bio information for the profile
   };
 }

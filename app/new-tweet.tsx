@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { v4 as uuidv4 } from "uuid"; // Import uuid for unique file naming
 import styles from "./styles.module.css";
 
 export default function NewTweet() {
   const [newTweet, setNewTweet] = useState("");
-  const [image, setImage] = useState<File | null>(null); // State to hold the image
+  const [image, setImage] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const supabase = createClientComponentClient();
 
   // Handle image selection
@@ -19,67 +21,96 @@ export default function NewTweet() {
 
   const handleAddTweet = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    if (newTweet.trim() === "") {
-      console.error("Tweet cannot be empty");
-      return;
-    }
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) {
-      console.error("User not authenticated");
-      return;
-    }
-
-    let imageUrl = "";
-
-    // If there's an image, upload it to Supabase Storage
-    if (image) {
-      const { data, error } = await supabase.storage
-        .from("tweet-images") // Make sure this is your bucket name
-        .upload(`public/${image.name}`, image);
-
-      if (error) {
-        console.error("Error uploading image:", error);
+      if (!user) {
+        console.error("User not authenticated");
+        setIsLoading(false);
         return;
       }
 
-      // Generate the public URL of the uploaded image
-      imageUrl = supabase.storage
-        .from("tweet-images")
-        .getPublicUrl(`public/${image.name}`).publicURL;
+      let imageUrl = null;
+
+      // Debugging logs
+      console.log("Start adding tweet");
+      console.log("User authenticated:", user);
+      console.log("Image selected:", image);
+
+      // Upload image to Supabase if provided
+      if (image) {
+        const uniqueFileName = `${user.id}-${Date.now()}-${uuidv4()}-${image.name}`;
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from("tweet-images")
+          .upload(uniqueFileName, image);
+        console.log("Uploading image with unique name:", uniqueFileName);
+
+        if (uploadError) {
+          console.error("Error uploading image:", uploadError);
+          setIsLoading(false);
+          return;
+        }
+
+        // Get the public URL of the uploaded image
+        const { data: publicUrlData } = supabase.storage
+          .from("tweet-images")
+          .getPublicUrl(uploadData.path);
+
+        if (!publicUrlData?.publicUrl) {
+          console.error("Error generating public URL");
+          setIsLoading(false);
+          return;
+        }
+
+        imageUrl = publicUrlData.publicUrl;
+
+        console.log("Image URL:", imageUrl); // Log the image URL for debugging
+      }
+
+      // Insert tweet into the `tweets` table
+      const { error: insertError } = await supabase.from("tweets").insert({
+        title: newTweet.trim() || null, // Optional text content
+        image_url: imageUrl, // Optional image URL
+        user_id: user.id, // User's ID
+      });
+
+      if (insertError) {
+        console.error("Error inserting tweet:", insertError);
+        setIsLoading(false);
+        return;
+      }
+
+      // Reload the page after successful tweet submission
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Unexpected error adding tweet:", error);
+    } finally {
+      setIsLoading(false);
     }
-
-    // Insert the tweet into the database, with or without an image URL
-    await supabase.from("tweets").insert({
-      title: newTweet,
-      user_id: user.id,
-      image_url: imageUrl, // Store the image URL in the database
-    });
-
-    setNewTweet(""); // Clear the input field after submission
-    setImage(null); // Clear the selected image after submission
   };
 
   return (
-    <form onSubmit={handleAddTweet}>
-      <input
-        type="text"
+    <form onSubmit={handleAddTweet} className={styles.newTweetForm}>
+      <textarea
         value={newTweet}
         onChange={(e) => setNewTweet(e.target.value)}
         placeholder="What's happening?"
         className={styles["input-highlight"]}
+        rows={3}
       />
       <input
         type="file"
         accept="image/*"
-        onChange={handleImageChange}
-        className={styles.imageInput}
+        onChange={(e) => setImage(e.target.files?.[0] || null)}
+        className={styles.fileInput}
       />
-      <button type="submit" className={styles.tweetButton}>
-        Tweet
+      <button type="submit" className={styles.tweetButton} disabled={isLoading}>
+        {isLoading ? "Tweeting..." : "Tweet"}
       </button>
     </form>
   );

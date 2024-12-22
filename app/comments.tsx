@@ -1,4 +1,3 @@
-// Comments.tsx
 "use client";
 import { useState, useEffect } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
@@ -17,6 +16,7 @@ type Comment = {
 export default function Comments({ tweetId }: { tweetId: number }) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   const supabase = createClientComponentClient();
 
   useEffect(() => {
@@ -77,12 +77,68 @@ export default function Comments({ tweetId }: { tweetId: number }) {
     }
   };
 
+  const handleDeleteComment = async (commentId: number) => {
+    setIsDeleting(true);
+
+    // Retrieve the current user's ID
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+    if (userError || !user) {
+      console.error("User not authenticated");
+      setIsDeleting(false);
+      return;
+    }
+
+    // Ensure the current user is the author of the comment
+    const commentToDelete = comments.find((comment) => comment.id === commentId);
+    if (!commentToDelete || commentToDelete.author_id !== user.id) {
+      console.error("You can only delete your own comments.");
+      setIsDeleting(false);
+      return;
+    }
+
+    try {
+      // Delete the comment from the database
+      const { error } = await supabase
+        .from("comments")
+        .delete()
+        .eq("id", commentId);
+
+      if (error) {
+        console.error("Error deleting comment:", error);
+        setIsDeleting(false);
+        return;
+      }
+
+      // Remove the deleted comment from the state
+      setComments(comments.filter((comment) => comment.id !== commentId));
+      alert("Comment deleted successfully.");
+    } catch (error) {
+      console.error("Unexpected error deleting comment:", error);
+      setIsDeleting(false);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className={styles.commentsContainer}>
       {comments.map((comment) => (
         <div key={comment.id} className={styles.comment}>
+        <span>
           <strong>{comment.author?.username}:</strong> {comment.content}
-        </div>
+        </span>
+        <button
+          onClick={() => handleDeleteComment(comment.id)}
+          disabled={isDeleting}
+          className={styles.deleteButton}
+        >
+          {isDeleting ? "Deleting..." : "Delete"}
+        </button>
+      </div>
+      
       ))}
       <form onSubmit={handleAddComment}>
         <input
