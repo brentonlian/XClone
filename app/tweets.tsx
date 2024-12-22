@@ -119,7 +119,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
       <Likes tweet={tweet} />
 
       {/* Comments Section */}
-      <Comments tweetId={tweet.id} />
+      <Comments tweetId={String(tweet.id)} />
     </div>
   ));
 }

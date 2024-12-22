@@ -48,7 +48,7 @@ export default function ProfileClient({
 
   return (
     <div className={styles.profileContainer}>
-      <h1>{profileData.username}'s Profile</h1>
+      <h1>{profileData.username}&apos;s Profile</h1>
       <p>Bio:</p>
       <input
         type="text"

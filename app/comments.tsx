@@ -6,14 +6,14 @@ import styles from "./styles.module.css";
 type Comment = {
   id: number;
   content: string;
-  tweet_id: number;
+  tweet_id: string;
   author_id: string;
   author: {
     username: string;
   } | null;
 };
 
-export default function Comments({ tweetId }: { tweetId: number }) {
+export default function Comments({ tweetId }: { tweetId: string }) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
