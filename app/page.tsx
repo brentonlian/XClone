@@ -6,7 +6,6 @@ import NewTweet from "./new-tweet";
 import Tweets from "./tweets";
 import Link from "next/link";
 import styles from "./styles.module.css";
-import LogoutButton from "./LogoutButton";
 
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies });
@@ -37,7 +36,6 @@ export default async function Home() {
       <Link href={`/profile/${user?.id}`} className={styles.profileLink}>
         My Profile
       </Link>
-      <LogoutButton /> {/* Add the LogoutButton here */}
       <NewTweet />
       <div className={styles.spacedContainer}>
         <Tweets tweets={tweets} />
