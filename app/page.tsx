@@ -25,7 +25,7 @@ export default async function Home() {
       ...tweet,
       author: Array.isArray(tweet.author) ? tweet.author[0] : tweet.author,
       user_has_liked_tweet: !!tweet.likes.find(
-        (like) => like.user_id === user?.id
+        (like: { user_id: string }) => like.user_id === user?.id
       ),
       likes: tweet.likes.length,
     })) ?? [];

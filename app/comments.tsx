@@ -78,8 +78,15 @@ export default function Comments({ tweetId }: { tweetId: number }) {
   };
 
   const handleDeleteComment = async (commentId: number) => {
+    // Show confirmation dialog
+    const userConfirmed = window.confirm("Are you sure you want to delete this comment?");
+    if (!userConfirmed) {
+      console.log("User canceled the deletion.");
+      return;
+    }
+  
     setIsDeleting(true);
-
+  
     // Retrieve the current user's ID
     const {
       data: { user },
@@ -90,7 +97,7 @@ export default function Comments({ tweetId }: { tweetId: number }) {
       setIsDeleting(false);
       return;
     }
-
+  
     // Ensure the current user is the author of the comment
     const commentToDelete = comments.find((comment) => comment.id === commentId);
     if (!commentToDelete || commentToDelete.author_id !== user.id) {
@@ -98,23 +105,22 @@ export default function Comments({ tweetId }: { tweetId: number }) {
       setIsDeleting(false);
       return;
     }
-
+  
     try {
       // Delete the comment from the database
       const { error } = await supabase
         .from("comments")
         .delete()
         .eq("id", commentId);
-
+  
       if (error) {
         console.error("Error deleting comment:", error);
         setIsDeleting(false);
         return;
       }
-
+  
       // Remove the deleted comment from the state
       setComments(comments.filter((comment) => comment.id !== commentId));
-      alert("Comment deleted successfully.");
     } catch (error) {
       console.error("Unexpected error deleting comment:", error);
       setIsDeleting(false);
@@ -122,6 +128,7 @@ export default function Comments({ tweetId }: { tweetId: number }) {
       setIsDeleting(false);
     }
   };
+  
 
   return (
     <div className={styles.commentsContainer}>

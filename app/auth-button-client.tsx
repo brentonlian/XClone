@@ -14,8 +14,18 @@ export default function AuthButtonClient({
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
+  const clearCookies = () => {
+    // Clear cookies by setting their expiration date to the past
+    document.cookie.split(";").forEach((cookie) => {
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+    });
+  };
+
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+    clearCookies(); // Clear cookies after signing out
     router.refresh();
   };
 

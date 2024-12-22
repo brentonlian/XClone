@@ -6,9 +6,9 @@ import ProfileClient from "./ProfileClient";
 export default async function ProfilePage({ params }: { params: { id: string } }) {
   const supabase = createServerComponentClient({ cookies });
 
-  const { data: user, error } = await supabase.auth.getUser();
+  const { data, error } = await supabase.auth.getUser();
 
-  if (error || !user) {
+  if (error || !data?.user) {
     redirect("/login");
   }
 
@@ -22,5 +22,5 @@ export default async function ProfilePage({ params }: { params: { id: string } }
     return <div>Profile not found</div>;
   }
 
-  return <ProfileClient profileData={profileData} userId={user.id} />;
+  return <ProfileClient profileData={profileData} userId={data.user.id} />;
 }

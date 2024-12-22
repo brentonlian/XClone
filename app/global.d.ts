@@ -11,6 +11,7 @@ declare global {
     likes: number;
     user_has_liked_tweet: boolean;
     avatar_url: string;
+    image_url: string;
   };
 
   type Profiles = Profile & {
