@@ -1,31 +1,21 @@
 "use client";
 
-import {
-  Session,
-  createClientComponentClient,
-} from "@supabase/auth-helpers-nextjs";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Session } from "@supabase/auth-helpers-nextjs"; // Import Session type
 
-export default function AuthButtonClient({
-  session,
-}: {
+// Add type for props to accept session
+interface AuthButtonClientProps {
   session: Session | null;
-}) {
+}
+
+export default function AuthButtonClient({ session }: AuthButtonClientProps) {
   const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
-  const clearCookies = () => {
-    // Clear cookies by setting their expiration date to the past
-    document.cookie.split(";").forEach((cookie) => {
-      const eqPos = cookie.indexOf("=");
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-    });
-  };
-
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    clearCookies(); // Clear cookies after signing out
     router.refresh();
   };
 
@@ -33,14 +23,18 @@ export default function AuthButtonClient({
     await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: "http://localhost:3000/auth/callback",
+        redirectTo: `${location.origin}/auth/callback`,
       },
     });
   };
 
   return session ? (
-    <button onClick={handleSignOut}>Logout</button>
+    <button className="text-xs text-black-1000" onClick={handleSignOut}>
+      Logout
+    </button>
   ) : (
-    <button onClick={handleSignIn}>Login</button>
+    <button className="text-xs text-black-1000" onClick={handleSignIn}>
+      Login
+    </button>
   );
 }
