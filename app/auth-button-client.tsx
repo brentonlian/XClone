@@ -1,17 +1,15 @@
 "use client";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Session } from "@supabase/auth-helpers-nextjs"; // Import Session type
+import { User } from "@supabase/supabase-js"; // Import User type
 
-// Add type for props to accept session
 interface AuthButtonClientProps {
-  session: Session | null;
+  user: User | null;
 }
 
-export default function AuthButtonClient({ session }: AuthButtonClientProps) {
-  const supabase = createClientComponentClient<Database>();
+export default function AuthButtonClient({ user }: AuthButtonClientProps) {
+  const supabase = createClientComponentClient();
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -28,12 +26,12 @@ export default function AuthButtonClient({ session }: AuthButtonClientProps) {
     });
   };
 
-  return session ? (
-    <button className="text-xs text-black-1000" onClick={handleSignOut}>
+  return user ? (
+    <button onClick={handleSignOut}>
       Logout
     </button>
   ) : (
-    <button className="text-xs text-black-1000" onClick={handleSignIn}>
+    <button onClick={handleSignIn}>
       Login
     </button>
   );
