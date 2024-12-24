@@ -49,24 +49,31 @@ export default function ProfileClient({
   return (
     <div className={styles.profileContainer}>
       <h1>{profileData.username}&apos;s Profile</h1>
-      <p>Bio:</p>
+      <label htmlFor="bioInput" className={styles.bioLabel}>
+        Bio:
+      </label>
       <input
+        id="bioInput"
         type="text"
         value={bio}
         onChange={(e) => setBio(e.target.value)}
         className={styles.bioInput}
+        placeholder="Enter your bio"
       />
       <button onClick={handleBioChange} className={styles.updateButton} disabled={isUpdating}>
         {isUpdating ? "Updating..." : "Update Bio"}
       </button>
 
-      {/* If the current profile is not the user's own profile, show a link to the homepage */}
-      {profileData.id !== userId && (
-        <Link href={`/`} className={styles.myProfileLink}>
-          Home
-        </Link>
+      {/* "Return Home" text link placed directly under "Update Bio" */}
+      <Link href={`/`} className={styles.myProfileLink}>
+        Return Home
+      </Link>
+
+      {updateMessage && (
+        <div className={styles.popup}>
+          <p>{updateMessage}</p>
+        </div>
       )}
-      {updateMessage && <p>{updateMessage}</p>}
     </div>
   );
 }

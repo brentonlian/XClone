@@ -17,18 +17,15 @@ export default function GitHubButton() {
 
   return (
     <div className="flex items-center justify-center min-h-screen w-full bg-white">
-      <button
-        onClick={handleSignIn}
-        className="flex items-center justify-center bg-gray-800 hover:bg-gray-700 px-6 py-3 rounded-lg shadow-lg transition duration-300"
-      >
+      <div onClick={handleSignIn} className="cursor-pointer">
         <Image
-          src="/github-mark-white.png"
-          alt="GitHub logo"
-          width={40}
-          height={40}
+          src="/githubButton.png"
+          alt="Login with GitHub"
+          width={200} // Adjust width to match your custom button size
+          height={60} // Adjust height to match your custom button size
+          className="transition-transform duration-300 hover:scale-105"
         />
-        <span className="ml-2 text-white font-semibold">Login with GitHub</span>
-      </button>
+      </div>
     </div>
   );
 }

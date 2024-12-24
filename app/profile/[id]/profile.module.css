@@ -1,48 +1,27 @@
 /* app/profile/[id]/profile.module.css */
 
 .profileContainer {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-  }
-  
-  .profileContainer h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .profileContainer p {
-    font-size: 1.2rem;
-    margin: 5px 0;
-  }
-  
-  .error {
-    color: red;
-    text-align: center;
-    margin-top: 50px;
-  }
-
-  /* app/profile/[id]/profile.module.css */
-
-.myProfileLink {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #0070f3;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
 }
 
-.myProfileLink:hover {
-  background-color: #005bb5;
+.profileContainer h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
-.profileContainer {
-  /* Existing styles */
+.profileContainer p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .bioInput {
@@ -56,9 +35,47 @@
   padding: 5px 10px;
 }
 
+.updateButton {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.updateButton:hover {
+  background-color: #005bb5;
+}
+
 .myProfileLink {
-  margin-top: 20px;
-  display: inline-block;
+  display: block;
+  margin-top: 10px;
+  color: #0070f3;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.myProfileLink:hover {
+  color: #005bb5;
+}
+
+.popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1000;
+  text-align: center;
 }
 
 
