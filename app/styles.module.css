@@ -146,15 +146,18 @@
 }
 
 .tweet-image-container {
-  margin-top: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0; /* Optional: Add some spacing around the image */
 }
 
 .tweet-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
+  max-width: 100%; /* Ensures the image doesn't overflow its container */
+  height: auto;    /* Maintains aspect ratio */
+  border-radius: 8px; /* Optional: Rounds the corners of the image */
 }
+
 
 .tweet-box {
   border: 1px solid #ccc;

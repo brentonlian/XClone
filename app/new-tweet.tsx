@@ -96,22 +96,27 @@ export default function NewTweet() {
 
   return (
     <form onSubmit={handleAddTweet} className={styles.newTweetForm}>
-      <textarea
-        value={newTweet}
-        onChange={(e) => setNewTweet(e.target.value)}
-        placeholder="What's happening?"
-        className={styles["input-highlight"]}
-        rows={3}
-      />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files?.[0] || null)}
-        className={styles.fileInput}
-      />
-      <button type="submit" className={styles.tweetButton} disabled={isLoading}>
-        {isLoading ? "Tweeting..." : "Tweet"}
-      </button>
-    </form>
+  <textarea
+    value={newTweet}
+    onChange={(e) => setNewTweet(e.target.value)}
+    placeholder="What's happening?"
+    className={styles["input-highlight"]}
+    rows={3}
+  />
+  <label htmlFor="fileInput" className={styles.fileInputLabel}>
+    Upload an image:
+  </label>
+  <input
+    id="fileInput"
+    type="file"
+    accept="image/*"
+    onChange={(e) => setImage(e.target.files?.[0] || null)}
+    className={styles.fileInput}
+  />
+  <button type="submit" className={styles.tweetButton} disabled={isLoading}>
+    {isLoading ? "Tweeting..." : "Tweet"}
+  </button>
+</form>
+
   );
 }
