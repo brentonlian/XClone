@@ -21,8 +21,8 @@ export default function GitHubButton() {
         <Image
           src="/githubButton.png"
           alt="Login with GitHub"
-          width={200} // Adjust width to match your custom button size
-          height={60} // Adjust height to match your custom button size
+          width={200} // Custom width
+          height={60} // Custom height
           className="transition-transform duration-300 hover:scale-105"
         />
       </div>

@@ -80,10 +80,7 @@
 
 .newTweetContainer {
   margin-bottom: 20px; /* Moves the button up by increasing the bottom margin */
-  /* Or use padding if you want to create space within the container */
 }
-
-/* app/styles.module.css */
 
 .profileLink {
   display: inline-block;
@@ -101,7 +98,7 @@
 }
 
 .avatar {
-  width: 40px; /* Adjust size as needed */
+  width: 40px; /* Adjusted size */
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
@@ -149,13 +146,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0; /* Optional: Add some spacing around the image */
+  margin: 1rem 0; 
 }
 
 .tweet-image {
   max-width: 100%; /* Ensures the image doesn't overflow its container */
   height: auto;    /* Maintains aspect ratio */
-  border-radius: 8px; /* Optional: Rounds the corners of the image */
+  border-radius: 8px; /* Rounds the corners of the image */
 }
 
 
@@ -165,29 +162,29 @@
   margin-bottom: 10px;
   border-radius: 5px;
   background-color: #f9f9f9;
-  position: relative; /* Enable absolute positioning for child elements */
+  position: relative;
 }
 
 .comment {
   margin-bottom: 8px;
   padding: 5px;
-  display: flex; /* Use flexbox */
-  align-items: center; /* Center align items vertically */
-  justify-content: center; /* Center align items horizontally */
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
 .commentText {
   margin-right: 10px; /* Space between comment and delete button */
-  text-align: center; /* Center align text within its space */
+  text-align: center; 
 }
 
 .deleteButton {
-  padding: 4px 8px; /* Slightly smaller padding */
+  padding: 4px 8px; 
   margin-left: 7px; /*Left margin for spacing */
-  font-size: 12px;   /* Reduce font size */
-  background-color: #f44336; /* Red background */
-  color: white;      /* White text */
-  border: none;      /* No border */
+  font-size: 12px;   
+  background-color: #f44336; 
+  color: white;      
+  border: none;      
   border-radius: 4px; /* Rounded corners */
   cursor: pointer;   /* Pointer cursor */
 }
@@ -220,8 +217,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px; /* Optional spacing */
-  border-bottom: 1px solid #ddd; /* Optional divider */
+  padding: 8px 16px; 
+  border-bottom: 1px solid #ddd; 
 }
 
 .post-author {
@@ -231,13 +228,13 @@
 
 .post-delete-button {
   position: absolute; /* Position relative to the tweet-box */
-  top: 10px; /* Adjust vertical position */
-  right: 10px; /* Adjust horizontal position */
-  padding: 5px 10px; /* Add some padding */
-  font-size: 14px; /* Adjust font size */
-  background-color: #f44336; /* Red background */
-  color: white; /* White text */
-  border: none; /* No border */
+  top: 10px; 
+  right: 10px; 
+  padding: 5px 10px; 
+  font-size: 14px; 
+  background-color: #f44336; 
+  color: white; 
+  border: none; 
   border-radius: 5px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor */
 }
@@ -260,7 +257,6 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.3s ease;
 }
 
 .logoutButton:hover {

@@ -64,7 +64,7 @@ export default function ProfileClient({
         {isUpdating ? "Updating..." : "Update Bio"}
       </button>
 
-      {/* "Return Home" text link placed directly under "Update Bio" */}
+      
       <Link href={`/`} className={styles.myProfileLink}>
         Return Home
       </Link>

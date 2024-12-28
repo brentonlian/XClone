@@ -40,7 +40,7 @@ export default function Likes({ tweet }: { tweet: TweetWithAuthor }) {
           .insert({ user_id: user.id, tweet_id: currentTweet.id });
       }
 
-      // Refresh the page to sync server-side state (optional)
+      // Refresh the page to sync server-side state
       router.refresh();
     }
   };

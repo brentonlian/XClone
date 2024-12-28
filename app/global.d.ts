@@ -15,8 +15,8 @@ declare global {
   };
 
   type Profiles = Profile & {
-    name: string; // Full name of the user
-    username: string; // Username of the user
-    bio: string; // Bio information for the profile
+    name: string; 
+    username: string; 
+    bio: string; 
   };
 }

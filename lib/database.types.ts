@@ -8,20 +8,20 @@ export type Database = {
         Row: {
           created_at: string;
           id: number;
-          tweet_id: UUID; // Explicitly a UUID
-          user_id: UUID;  // Explicitly a UUID
+          tweet_id: UUID; 
+          user_id: UUID;  
         };
         Insert: {
           created_at?: string;
           id?: number;
-          tweet_id: UUID; // Explicitly a UUID
-          user_id: UUID;  // Explicitly a UUID
+          tweet_id: UUID; 
+          user_id: UUID;  
         };
         Update: {
           created_at?: string;
           id?: number;
-          tweet_id?: UUID; // Explicitly a UUID
-          user_id?: UUID;  // Explicitly a UUID
+          tweet_id?: UUID; 
+          user_id?: UUID;  
         };
         Relationships: [
           {
@@ -44,21 +44,21 @@ export type Database = {
         Row: {
           profile_pic_url: string;
           bio: string;
-          id: UUID; // Explicitly a UUID
+          id: UUID; 
           name: string;
           username: string;
           avatar_url: string;
         };
         Insert: {
           bio: string;
-          id: UUID; // Explicitly a UUID
+          id: UUID; 
           name: string;
           username: string;
           avatar_url: string;
         };
         Update: {
           bio?: string;
-          id?: UUID; // Explicitly a UUID
+          id?: UUID; 
           name?: string;
           username?: string;
           avatar_url?: string;
@@ -76,21 +76,21 @@ export type Database = {
       tweets: {
         Row: {
           created_at: string;
-          id: UUID; // Explicitly a UUID
+          id: UUID; 
           title: string;
-          user_id: UUID; // Explicitly a UUID
+          user_id: UUID; 
         };
         Insert: {
           created_at?: string;
-          id?: UUID; // Explicitly a UUID
+          id?: UUID; 
           title: string;
-          user_id: UUID; // Explicitly a UUID
+          user_id: UUID; 
         };
         Update: {
           created_at?: string;
-          id?: UUID; // Explicitly a UUID
+          id?: UUID; 
           title?: string;
-          user_id?: UUID; // Explicitly a UUID
+          user_id?: UUID; 
         };
         Relationships: [
           {
@@ -103,7 +103,6 @@ export type Database = {
         ];
       };
     };
-    // Other properties unchanged
     Views: { [_ in never]: never };
     Functions: { [_ in never]: never };
     Enums: { [_ in never]: never };

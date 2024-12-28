@@ -119,7 +119,7 @@ export default function Comments({ tweetId }: { tweetId: string }) {
         return;
       }
   
-      // Remove the deleted comment from the state
+      // Remove the deleted comment from frontend
       setComments(comments.filter((comment) => comment.id !== commentId));
     } catch (error) {
       console.error("Unexpected error deleting comment:", error);
