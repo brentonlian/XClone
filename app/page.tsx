@@ -7,6 +7,8 @@ import Tweets from "./tweets";
 import Link from "next/link";
 import styles from "./styles.module.css";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies });
 
