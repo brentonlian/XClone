@@ -1,20 +1,27 @@
 # XClone
+* A modern clone of Twitter/X with real-time features. *
+
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Demo](#demo)
+- [Try it out!](#try-it-out)
 
 ## Description
-XClone is a Twitter/X Clone built using Next.js and Supabase. It supports user authentication, posting and liking text and image-based tweets, commenting, custom profiles, and real time updates for most features. 
+XClone is a Twitter/X Clone built using Next.js and Supabase. It supports user authentication, posting and liking text and image-based tweets, commenting, custom profiles, and real-time updates for most features. 
 
 ## Features
 -User authentication using GitHub Oauth.\
 -Posting text or image based tweets.\
--Real time updates are supported for most features.\
+-Real-time updates are supported for most features.\
 -Custom profiles.\
--Real time updates for most features\
 
 ## Tech Stack
 **Frontend** - Next.js\
 **Backend** - Supabase\
 **Authentication** - GitHub OAuth\
-**Deployment** - Vercel\
+**Deployment** - Vercel
 
 ## Demo
 
@@ -41,7 +48,7 @@ https://github.com/user-attachments/assets/e812b06f-5328-4ea2-b694-30fdae44bc6b
 
 https://github.com/user-attachments/assets/fb82e2e1-f3d7-43c7-9224-8461a6ee8711
 
-## Try it out!
+## Try-it-out!
 
 https://xclone-delta.vercel.app/login
 
