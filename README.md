@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# XClone
+* A modern clone of Twitter/X with real-time features. *
 
-## Getting Started
+## Table of Contents
+- [Description](#description)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Demo](#demo)
+- [Try it out!](#try-it-out)
 
-First, run the development server:
+## Description
+XClone is a Twitter/X Clone built using Next.js and Supabase. It supports user authentication, posting and liking text and image-based tweets, commenting, custom profiles, and real-time updates for most features. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+-User authentication using GitHub Oauth.\
+-Posting text or image based tweets.\
+-Real-time updates are supported for most features.\
+-Custom profiles.\
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
+**Frontend** - Next.js\
+**Backend** - Supabase\
+**Authentication** - GitHub OAuth\
+**Deployment** - Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Login
+Details are obscured for privacy. Login with your GitHub account
 
-## Learn More
+![Screenshot (253)](https://github.com/user-attachments/assets/6f6b794e-71a2-486b-85b8-2751ec3b2d49)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Make a tweet and a comment, like and unlike
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+https://github.com/user-attachments/assets/e4acd6bc-89ef-4e93-b2c5-77a2912db854
 
-## Deploy on Vercel
+### Upload an image
+Note that file explorer is hidden for privacy.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+https://github.com/user-attachments/assets/62f66f38-1eec-4325-be28-0d58d133bcd5
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Change your profile
+
+https://github.com/user-attachments/assets/e812b06f-5328-4ea2-b694-30fdae44bc6b
+
+### Delete it all
+
+https://github.com/user-attachments/assets/fb82e2e1-f3d7-43c7-9224-8461a6ee8711
+
+## Try-it-out!
+
+https://xclone-delta.vercel.app/login
+
+
+
+
+
+
