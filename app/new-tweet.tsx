@@ -77,15 +77,18 @@ export default function NewTweet() {
         rows={3}
       />
       <label htmlFor="fileInput" className={styles.fileInputLabel}>
-        Upload an image:
+        <div className={styles.uploadButton}>
+          <span className={styles.icon}>⬓</span>
+          <span>Upload</span>
+        </div>
+        <input
+          id="fileInput"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files?.[0] || null)}
+          className={styles.hiddenInput}
+        />
       </label>
-      <input
-        id="fileInput"
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files?.[0] || null)}
-        className={styles.fileInput}
-      />
       <button type="submit" className={styles.tweetButton} disabled={isLoading}>
         {isLoading ? "Tweeting..." : "Tweet"}
       </button>

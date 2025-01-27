@@ -1,51 +1,4 @@
 .input-highlight {
-  border: 2px solid #007bff;
-  border-radius: 4px;
-  padding: 8px;
-  outline: none; /* Remove default focus outline */
-}
-
-.input-highlight:focus {
-  border-color: #007bff; /* Change border color on focus */
-}
-
-.centeredContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-}
-
-.formContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px; /* Adjusts the space between the input and button */
-}
-
-.inputHighlight {
-  width: 100%; /* Makes the input field take up the full width */
-  padding: 10px;
-  font-size: 16px;
-}
-
-.submitButton {
-  padding: 8px 16px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.tweetBox {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-.input-highlight {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -61,12 +14,24 @@
   background-color: #f9f9f9;
 }
 
-/* Big box */
-.tweet-button {
-  margin-top: 10px;
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-/* Small box */
+.tweet-header {
+  display: flex;
+  align-items: center;
+}
+
+.submitButton {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .tweetButton {
   display: inline-block;
   padding: 10px 20px;
@@ -76,10 +41,6 @@
   cursor: pointer;
   text-align: center;
   margin-top: 10px;
-}
-
-.newTweetContainer {
-  margin-bottom: 20px; /* Moves the button up by increasing the bottom margin */
 }
 
 .profileLink {
@@ -95,37 +56,6 @@
 
 .profileLink:hover {
   background-color: #005bb5;
-}
-
-.avatar {
-  width: 40px; /* Adjusted size */
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.tweet-header {
-  display: flex;
-  align-items: center;
-}
-
-.spacedContainer {
-  margin-top: 10px; 
-}
-
-/* tweet styling */
-.commentsContainer {
-  margin-top: 10px;
-  padding: 10px;
-  border-top: 1px solid #e0e0e0;
-}
-
-.commentInput {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 .commentButton {
@@ -146,109 +76,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0; 
+  margin: 1rem 0;
 }
 
 .tweet-image {
-  max-width: 100%; /* Ensures the image doesn't overflow its container */
-  height: auto;    /* Maintains aspect ratio */
-  border-radius: 8px; /* Rounds the corners of the image */
-}
-
-
-.tweet-box {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  position: relative;
-}
-
-.comment {
-  margin-bottom: 8px;
-  padding: 5px;
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-}
-
-.commentText {
-  margin-right: 10px; /* Space between comment and delete button */
-  text-align: center; 
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
 .deleteButton {
-  padding: 4px 8px; 
-  margin-left: 7px; /*Left margin for spacing */
-  font-size: 12px;   
-  background-color: #f44336; 
-  color: white;      
-  border: none;      
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer;   /* Pointer cursor */
+  padding: 4px 8px;
+  margin-left: 7px;
+  font-size: 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .deleteButton:hover {
-  background-color: #d32f2f; /* Darker red on hover */
+  background-color: #d32f2f;
 }
 
-.deleteButton:disabled {
-  background-color: #e0e0e0; /* Gray when disabled */
-  cursor: not-allowed;
-}
-
-
-
-
-.tweet-header {
-  display: flex;
-  align-items: center;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px; 
-  border-bottom: 1px solid #ddd; 
-}
-
-.post-author {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.post-delete-button {
-  position: absolute; /* Position relative to the tweet-box */
-  top: 10px; 
-  right: 10px; 
-  padding: 5px 10px; 
-  font-size: 14px; 
-  background-color: #f44336; 
-  color: white; 
-  border: none; 
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor */
-}
-
-.post-delete-button:hover {
-  background-color: #d32f2f; /* Darker red on hover */
-}
-
-.post-delete-button:disabled {
-  background-color: #e0e0e0; /* Gray when disabled */
-  cursor: not-allowed;
-}
-
-/* styles.module.css */
 .logoutButton {
   background-color: #ff4d4f;
   color: white;
@@ -263,8 +114,60 @@
   background-color: #d9363e;
 }
 
+.newTweetForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
+.fileInputLabel {
+  display: inline-block;
+}
 
+.uploadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
 
+.uploadButton:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.icon {
+  font-size: 1em;
+  line-height: 1;
+}
 
+.hiddenInput {
+  display: none;
+}
+
+.tweetButton {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tweetButton:hover {
+  background-color: #0056b3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tweetButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
