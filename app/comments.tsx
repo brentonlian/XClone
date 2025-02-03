@@ -142,7 +142,7 @@ export default function Comments({ tweetId }: { tweetId: string }) {
           disabled={isDeleting}
           className={styles.deleteButton}
         >
-          {isDeleting ? "Deleting..." : "Delete"}
+          {isDeleting ? "Deleting..." : "delete"}
         </button>
       </div>
       

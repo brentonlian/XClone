@@ -53,13 +53,26 @@
   border-radius: 5px;
 }
 
+.spacedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+  justify-content: center; /* Centers items vertically if needed */
+  width: 100%; /* Ensure full width for centering */
+}
+
 .tweet-box {
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   background-color: #f9f9f9;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Enable positioning of child elements */
 }
+
 
 /* Big box */
 .tweet-button {
@@ -155,16 +168,6 @@
   border-radius: 8px; /* Rounds the corners of the image */
 }
 
-
-.tweet-box {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  position: relative;
-}
-
 .comment {
   margin-bottom: 8px;
   padding: 5px;
@@ -178,19 +181,20 @@
   text-align: center; 
 }
 
-.deleteButton {
-  padding: 4px 8px; 
-  margin-left: 7px; /*Left margin for spacing */
-  font-size: 12px;   
-  background-color: #f44336; 
-  color: white;      
-  border: none;      
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer;   /* Pointer cursor */
+.delete-button {
+  position: absolute;
+  top: 10px; /* Adjust the distance from the top */
+  right: 10px; /* Adjust the distance from the right */
+  padding: 5px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
-.deleteButton:hover {
-  background-color: #d32f2f; /* Darker red on hover */
+.delete-button:hover {
+  background-color: #e60000;
 }
 
 .deleteButton:disabled {
