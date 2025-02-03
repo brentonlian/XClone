@@ -263,8 +263,30 @@
   background-color: #d9363e;
 }
 
+.newTweetForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 75%; /* Make sure the parent container takes up the full width */
+}
+
+.fileInputLabel {
+  cursor: pointer;
+}
 
 
+.fileInputLabel:hover {
+  text-decoration: none;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.tweetButton:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
 
 
 

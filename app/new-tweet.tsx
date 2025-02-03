@@ -74,21 +74,25 @@ export default function NewTweet() {
         onChange={(e) => setNewTweet(e.target.value)}
         placeholder="What's happening?"
         className={styles["input-highlight"]}
-        rows={3}
+        cols={50}
       />
       <label htmlFor="fileInput" className={styles.fileInputLabel}>
-        Upload an image:
-      </label>
-      <input
-        id="fileInput"
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files?.[0] || null)}
-        className={styles.fileInput}
-      />
-      <button type="submit" className={styles.tweetButton} disabled={isLoading}>
-        {isLoading ? "Tweeting..." : "Tweet"}
-      </button>
+  Upload an image
+</label>
+<input
+  id="fileInput"
+  type="file"
+  accept="image/*"
+  onChange={(e) => setImage(e.target.files?.[0] || null)}
+  className={styles.fileInput}
+  style={{ display: "none" }} // Hides default file input button
+/>
+
+      <div className={styles.tweetButtonContainer}>
+        <button type="submit" className={styles.tweetButton} disabled={isLoading}>
+          {isLoading ? "Tweeting..." : "Tweet"}
+        </button>
+      </div>
     </form>
   );
 }
