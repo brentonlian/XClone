@@ -8,6 +8,7 @@ import styles from "./styles.module.css";
 export default function NewTweet() {
   const [newTweet, setNewTweet] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const [imageTitle, setImageTitle] = useState(""); // State for the image title
   const [isLoading, setIsLoading] = useState(false);
   const supabase = createClientComponentClient();
 
@@ -67,6 +68,15 @@ export default function NewTweet() {
     }
   };
 
+  // Handle image selection and set title
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      setImageTitle(file.name); // Set image title to file name
+    }
+  };
+
   return (
     <form onSubmit={handleAddTweet} className={styles.newTweetForm}>
       <textarea
@@ -76,21 +86,33 @@ export default function NewTweet() {
         className={styles["input-highlight"]}
         cols={50}
       />
-      <div className="container">
+      <p style={{ marginBottom: "10px" }}></p>
+      <div className={styles.container}>
         <label htmlFor="fileInput" className={styles.fileInputLabel}>
-  Image
-</label>
-</div>
-<input
-  id="fileInput"
-  type="file"
-  accept="image/*"
-  onChange={(e) => setImage(e.target.files?.[0] || null)}
-  className={styles.fileInput}
-  style={{ display: "none" }} // Hides default file input button
-/>
+          <img
+            src="/uploadImg.png"
+            alt="Upload"
+            className={styles.fileIcon}
+          />
+          Image
+        </label>
+      </div>
+      <input
+        id="fileInput"
+        type="file"
+        accept="image/*"
+        onChange={handleImageChange}
+        className={styles.fileInput}
+        style={{ display: "none" }} // Hides default file input button
+      />
 
-
+      {image && (
+        <div className={styles.imageTitleContainer}>
+          <p style={{ marginBottom: "20px" }}></p>
+          <p>{imageTitle} uploaded</p>
+        </div>
+      )}
+      <p style={{ marginBottom: "1px" }}></p>
       <div className={styles.tweetButtonContainer}>
         <button type="submit" className={styles.tweetButton} disabled={isLoading}>
           {isLoading ? "Tweeting..." : "Tweet"}

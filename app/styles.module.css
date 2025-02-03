@@ -278,22 +278,33 @@
 /* Same as tweet button */
 /* Same as tweet button */
 .fileInputLabel {
-  display: block; /* Allows margin auto to work */
-  padding: 8px 16px; 
+  display: block;
+  padding: 8px 16px;
   background-color: transparent;
   cursor: pointer;
   text-align: center;
   font-size: 16px;
-  margin: 10px auto; /* Centers the button */
+  margin-left:33px;
   transition: border-color 0.3s ease;
-  width: 25%;
+  width: auto;
+  position: absolute; /* Make the label the reference point */
 }
+
+.fileIcon {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  position: absolute;
+  top: 16px; /* Adjust positioning based on label */
+  right: 70px; /* Adjust positioning to make it move slightly */
+  transform: translateY(-50%); /* Center the icon vertically */
+}
+
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full height of the viewport */
+  height: auto;
 }
 
 
@@ -305,14 +316,6 @@
 .fileInputLabel:active {
   border-color: #005bb5; /* Matches tweet button active state */
 }
-
-/* Optional: Add a more compact version of the label icon */
-.fileInputIcon {
-  width: 20px; /* Adjust the size of the icon */
-  height: 20px;
-  margin-right: 10px; /* Adds space between the icon and text */
-}
-
 
 
 .fileInput {
