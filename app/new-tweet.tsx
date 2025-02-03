@@ -76,9 +76,11 @@ export default function NewTweet() {
         className={styles["input-highlight"]}
         cols={50}
       />
-      <label htmlFor="fileInput" className={styles.fileInputLabel}>
-  Upload an image
+      <div className="container">
+        <label htmlFor="fileInput" className={styles.fileInputLabel}>
+  Image
 </label>
+</div>
 <input
   id="fileInput"
   type="file"
