@@ -33,20 +33,33 @@ Details are obscured for privacy. Login with your GitHub account
 
 ### Make a tweet and a comment, like and unlike
 
-https://github.com/user-attachments/assets/e4acd6bc-89ef-4e93-b2c5-77a2912db854
+
+
+https://github.com/user-attachments/assets/0613601d-4809-4651-9ce7-067f2f86f690
+
 
 ### Upload an image
 Note that file explorer is hidden for privacy.
 
-https://github.com/user-attachments/assets/62f66f38-1eec-4325-be28-0d58d133bcd5
+
+
+https://github.com/user-attachments/assets/5517a031-bed5-42a6-aa72-aa683831fea2
+
+
 
 ### Change your profile
 
-https://github.com/user-attachments/assets/e812b06f-5328-4ea2-b694-30fdae44bc6b
+
+
+https://github.com/user-attachments/assets/7d849c55-3d7d-4a33-a7de-d648397fc92f
+
+
 
 ### Delete it all
 
-https://github.com/user-attachments/assets/fb82e2e1-f3d7-43c7-9224-8461a6ee8711
+
+https://github.com/user-attachments/assets/f1005955-83f9-4b1d-92a0-31dce33dbce7
+
 
 ## Try-it-out!
 
