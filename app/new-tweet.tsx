@@ -88,6 +88,7 @@ export default function NewTweet() {
   style={{ display: "none" }} // Hides default file input button
 />
 
+
       <div className={styles.tweetButtonContainer}>
         <button type="submit" className={styles.tweetButton} disabled={isLoading}>
           {isLoading ? "Tweeting..." : "Tweet"}

@@ -67,7 +67,7 @@
   margin-bottom: 10px;
   border-radius: 5px;
   background-color: #f9f9f9;
-  width: 75%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   position: relative; /* Enable positioning of child elements */
@@ -181,17 +181,18 @@
   text-align: center; 
 }
 
-.delete-button {
-  position: absolute;
-  top: 10px; /* Adjust the distance from the top */
-  right: 10px; /* Adjust the distance from the right */
-  padding: 5px 10px;
+.deleteButton {
+  top: 10px;
+  margin-left: 10px;
+  padding: 5px 5px 5px 5px; /* Increase the left padding */
   background-color: #ff4d4d;
   color: white;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  font-size: 12px;
 }
+
 
 .delete-button:hover {
   background-color: #e60000;
@@ -271,26 +272,54 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 75%; /* Make sure the parent container takes up the full width */
+  width: 70%; /* Make sure the parent container takes up the full width */
 }
 
+/* Same as tweet button */
+/* Same as tweet button */
 .fileInputLabel {
+  display: inline-block; /* Matches tweet button behavior */
+  padding: 8px 16px; /* Adjusted padding to match tweet button */
+  border: 2px solid #000;
+  background-color: #fff;
+  border-radius: 5px;
   cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px; 
+  transition: border-color 0.3s ease;
+  width: 25%;
 }
 
-
+/* Match hover and active states of the tweet button */
 .fileInputLabel:hover {
-  text-decoration: none;
+  border-color: #007bff; /* Matches tweet button hover state */
 }
 
-.hiddenFileInput {
-  display: none;
+.fileInputLabel:active {
+  border-color: #005bb5; /* Matches tweet button active state */
+}
+
+/* Optional: Add a more compact version of the label icon */
+.fileInputIcon {
+  width: 20px; /* Adjust the size of the icon */
+  height: 20px;
+  margin-right: 10px; /* Adds space between the icon and text */
+}
+
+
+
+.fileInput {
+  display: none; /* Hides the default file input */
 }
 
 .tweetButton:disabled {
   background-color: gray;
   cursor: not-allowed;
 }
+
+
+
 
 
 
